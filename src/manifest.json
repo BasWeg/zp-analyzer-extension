@@ -1,0 +1,73 @@
+{
+    "manifest_version": 3,
+    "name": "Zwift(-Power) Analyzer",
+    "version": "1.0.0",
+    "description": "This extension updates Zwift activities websites with additional charts and even ZwiftPower websites.",
+    "icons": { 
+          "128": "images/icon128.png"
+    },
+    "homepage_url": "https://www.wattfabrik.org",
+    "action": {
+        "default_popup": "popup.html"
+    },    
+    "permissions": [
+      "tabs", 
+      "webNavigation",
+      "storage",
+      "activeTab",
+      "scripting",
+      "webRequest"
+     ],
+    "background": {
+        "service_worker":"background.js"
+    },
+  "host_permissions": [
+    "https://www.zwiftpower.com/*",
+    "https://*.zwift.com/*"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["echarts.js","ecStat.js","images/*","images/icon128.png","*_inject.js","common.js"],
+    "matches": ["<all_urls>"]
+  }],  
+  "content_security_policy": {
+  "extension_pages": "default-src 'self'; style-src 'self'; script-src 'self'; connect-src https://* data: blob: filesystem:"
+  },
+  "content_scripts": [
+    {
+          "matches": ["https://zwiftpower.com/profile.php*"],
+          "js": ["profile.js"],
+          "run_at": "document_end" 
+    },
+    {
+      "matches": ["https://zwiftpower.com/team.php*"],
+      "js": ["team.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://zwiftpower.com/events.php?zid*"],
+      "js": ["event.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://zwiftpower.com/league.php?id=*"],
+      "js": ["league.js"],
+      "run_at": "document_end"
+    },     
+    {
+      "matches": ["https://zwiftpower.com/*"],
+      "js": ["echarts.js"],
+      "run_at": "document_start" 
+    },
+    {
+      "matches": ["https://www.zwift.com/*/activity/*"],
+      "js": ["activity.js"],
+      "run_at": "document_end" 
+    },
+    {
+      "matches": ["https://www.zwift.com/*/activity/*"],
+      "js": ["echarts.js","ecStat.js"],
+      "run_at": "document_end" 
+    }    
+  ]
+}
+
