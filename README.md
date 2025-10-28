@@ -42,15 +42,13 @@ A powerful Chrome extension that enhances Zwift(-Power) with advanced data visua
 ### From Chrome Web Store
 *(Not yet published)*
 
-### Manual Installation
-1. Download or clone this repository
-2. Run the build script:
-   ```powershell
-   .\build.ps1
-   ```
-3. Open Chrome and navigate to `chrome://extensions/`
-4. Enable "Developer mode" in the top right
-5. Click "Load unpacked" and select the `package` folder
+### Manual Installation packaged
+
+1. Download the release 
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Drag the zip file into the chrome extensions tab 
+
 
 ## Usage
 
